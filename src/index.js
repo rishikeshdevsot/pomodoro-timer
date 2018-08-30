@@ -2,11 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
+const MIL_SEC_25MIN = 25*60*1000;
+
 
 class App extends React.Component{
     constructor(props){
         super(props);
-        this.state = {curTime : new Date()};
+        this.startTime = new Date();
+        this.curTime = new Date();
+        this.state = {ctTime : this.startTime.getTime() + MIL_SEC_25MIN  - this.curTime.getTime()};
         this.handleReset = this.handleReset.bind(this);
         this.handleStart = this.handleStart.bind(this);
         this.handleStop = this.handleStop.bind(this);
@@ -22,11 +26,12 @@ class App extends React.Component{
         console.log("clicked Reset");
     }
     updateTime(){
-        this.setState({curTime: new Date()});
+        this.curTime = new Date();
+        this.setState({ctTime : this.startTime.getTime() + MIL_SEC_25MIN  - this.curTime.getTime()});
     }
 
     componentDidMount(){
-        this.setState({curTime: new Date()});
+        this.setState({ctTime : this.startTime.getTime() + MIL_SEC_25MIN  - this.curTime.getTime()});
         setInterval(this.updateTime, 1000);
     }
 
@@ -39,7 +44,7 @@ class App extends React.Component{
                 </div>
                 <div className="Body">
                     <div>
-                        <Timer curTimez={this.state.curTime.toLocaleTimeString()}/>
+                        <Timer curTimez={this.state.ctTime}/>
                     </div>
                     <div className="interaction">
                         <Interaction startClick={this.handleStart} 
@@ -57,8 +62,10 @@ class Timer extends React.Component{
         super(props);
     }
     render(){
+        this.minutes = Math.floor(this.props.curTimez/(1000*60))
+        this.seconds = Math.floor((this.props.curTimez/1000)%60);
         return(
-        <p>{this.props.curTimez}</p>
+        <p className="displayTime">{String("0"+this.minutes).slice(-2)+":"+String("0"+this.seconds).slice(-2)}</p>
         );
     }
 
@@ -67,7 +74,6 @@ class Timer extends React.Component{
 class Interaction extends React.Component{
     constructor(props){
         super(props);
-        //this.state();
     }
 
     render()    {
