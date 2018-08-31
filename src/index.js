@@ -72,9 +72,9 @@ class App extends React.Component{
     render()
     {
         return(
-            <div>
-                <div className = "Heading">
-                <h1 >POMODORO TIMER</h1>
+            <div className = "Background">
+                <div className="Heading">
+                <h1>POMODORO TIMER</h1>
                 </div>
                 <div className="Body">
                     <div>
@@ -107,7 +107,7 @@ class Timer extends React.Component{
         }
         return(
         <div>
-        <h1>{this.stage}</h1>
+        <h1 className="Stage">{this.stage}</h1>
         <p className="displayTime">{String("0"+this.minutes).slice(-2)+":"+String("0"+this.seconds).slice(-2)}</p>
         </div>
         );
@@ -121,7 +121,9 @@ class Interaction extends React.Component{
         return(
             <div>
                 <button onClick = {this.props.startClick}>Start</button>
+                <div className="divider"/>
                 <button onClick = {this.props.resetClick}>Reset</button>
+                <div className="divider"/>
                 <button onClick = {this.props.skipClick}>Skip</button>
             </div>
         );
