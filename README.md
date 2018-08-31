@@ -1,3 +1,12 @@
+POMODORO-TIMER
+
+A website which runs the pomodoro timer and its various states such as work, short break and long break. Created the project to try out the fundamentals of ReactJS.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
